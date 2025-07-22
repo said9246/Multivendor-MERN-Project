@@ -25,15 +25,10 @@ import {
   UserInbox,
 } from "./routes/Routes.js";
 
-// import Login from './pages/Login'
-// import SignupPage from './pages/SignupPage'
+//
 import { loadUser } from './redux/actions/user';
 import Store from './redux/store';
-// import HomePage from './pages/HomePage';
-// import ProductsPage from './pages/ProductsPage';
-// import BestSellingPage from './pages/BestSellingPage';
-// import EventsPage from './pages/EventsPage';
-// import FAQPage from './pages/FAQPage';
+
 
 const App = () => {
   useEffect(()=>{
@@ -46,10 +41,23 @@ const App = () => {
         <Route path='/sign-Up' element={<SignupPage/>}/>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/products' element={<ProductsPage/>}/>
-        <Route path="/product/:name" element={<ProductDetailsPage />} />
+        <Route path="/product/:name" element={<ProductDetailsPage />} />   
         <Route path='/best-selling' element={<BestSellingPage/>}/>
         <Route path='/events' element={<EventsPage/>}/>
         <Route path='/faq' element={<FAQPage/>}/>
+
+
+                    <Route
+                             path="/profile"
+                             element={
+                              //  <ProtectedRoute>
+                                 <ProfilePage />
+                              //  </ProtectedRoute>
+                             }
+                           />
+
+
+
       
       </Routes>
       <ToastContainer

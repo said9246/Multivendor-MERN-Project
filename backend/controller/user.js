@@ -6,7 +6,7 @@ const catchAsyncErrors=require("../middleware/catchAsyncErrors")
 const sendToken = require("../utils/jwtToken");
 
 exports.test= async(req,res)=>{
-  res.send("hello")
+  res.send("hello said")
 }
 
 
