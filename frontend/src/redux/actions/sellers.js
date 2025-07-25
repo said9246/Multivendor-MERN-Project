@@ -8,7 +8,7 @@ export const getAllSellers = () => async (dispatch) => {
       type: "getAllSellersRequest",
     });
 
-    const { data } = await axios.get(`${server}/shop/admin-all-sellers`, {
+    const { data } = await axios.get(`${server}/shop/getSeller`, {
       withCredentials: true,
     });
 
@@ -18,7 +18,7 @@ export const getAllSellers = () => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: "getAllSellerFailed",
+      type: "getAllSellersFailed",
     //   payload: error.response.data.message,
     });
   }

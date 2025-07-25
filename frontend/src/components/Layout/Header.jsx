@@ -19,7 +19,8 @@ import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  // const { isSeller } = useSelector((state) => state.seller);
+  const { isSeller } = useSelector((state) => state.seller);
+  console.log(isSeller);
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   // const { allProducts } = useSelector((state) => state.products);
@@ -104,13 +105,13 @@ const Header = ({ activeHeading }) => {
           </div>
 
            <div className={`${styles.button}`}>
-            <Link to="/dashboard">
-            {/* {`${isSeller ? "/dashboard" : "/shop-create"}`}> */}
-              <h1 className="text-[#fff] flex items-center">Go Dashboard
-                {/* {isSeller ? "Go Dashboard" : "Become Seller"}{" "} */}
-                <IoIosArrowForward className="ml-1" />
-              </h1>
-            </Link>
+           <Link to={isSeller ? "/dashboard" : "/shop-create"}>
+  <h1 className="text-[#fff] flex items-center">
+    {isSeller ? "Go Dashboard" : "Become Seller"}
+    <IoIosArrowForward className="ml-1" />
+  </h1>
+</Link>
+
           </div> 
         </div>
       </div>
@@ -241,16 +242,16 @@ const Header = ({ activeHeading }) => {
               onClick={() => setOpenCart(true)}
             >
               <AiOutlineShoppingCart size={30} />
-              {/* <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+              <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                 {cart && cart.length}
-              </span> */}
+              </span>
             </div>
           </div>
           {/* cart popup */}
           {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
           {/* wishlist popup */}
-          {/* {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null} */}
+          {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null}
         </div>
 
         {/* header sidebar */}
@@ -266,9 +267,9 @@ const Header = ({ activeHeading }) => {
                     onClick={() => setOpenWishlist(true) || setOpen(false)}
                   >
                     <AiOutlineHeart size={30} className="mt-5 ml-3" />
-                    {/* <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                    <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center cursor-pointer">
                       {wishlist && wishlist.length}
-                    </span> */}
+                    </span>
                   </div>
                 </div>
                 <RxCross1

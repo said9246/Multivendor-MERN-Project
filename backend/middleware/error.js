@@ -6,7 +6,7 @@ module.exports = (err, req, res, next) => {
   }
   
   err.statusCode = err.statusCode || 500;
-  err.message = err.message || "Internal Server Error";
+  err.message = err.message || "Internal Server Erross";
 
   // Wrong MongoDB Id error
   if (err.name === "CastError") {

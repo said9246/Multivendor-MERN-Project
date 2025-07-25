@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 
 const Cart = ({ setOpenCart }) => {
   const { cart } = useSelector((state) => state.cart);
-  console.log("Cart items:");
+
  
 
 

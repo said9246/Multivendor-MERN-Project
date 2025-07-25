@@ -6,57 +6,102 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   LoginPage,
   SignupPage,
-  ActivationPage,
+  // ActivationPage,
   HomePage,
   ProductsPage,
   BestSellingPage,
   EventsPage,
   FAQPage,
-  CheckoutPage,
-  PaymentPage,    
-  OrderSuccessPage,
+  // CheckoutPage,
+  // PaymentPage,    
+  // OrderSuccessPage,
   ProductDetailsPage,
   ProfilePage,
   ShopCreatePage,
-  SellerActivationPage,
+  
+  // SellerActivationPage,
   ShopLoginPage,
-  OrderDetailsPage,
-  TrackOrderPage,
-  UserInbox,
+  // OrderDetailsPage,
+  // TrackOrderPage,
+  // UserInbox,
 } from "./routes/Routes.js";
+//Data about shop only
+import {
+  ShopDashboardPage,
+  // ShopCreateProduct,
+  // ShopAllProducts,
+  // ShopCreateEvents,
+  // ShopAllEvents,
+  // ShopAllCoupouns,
+  // ShopPreviewPage,
+  // ShopAllOrders,
+  // ShopOrderDetails,
+  // ShopAllRefunds,
+  // ShopSettingsPage,
+  // ShopWithDrawMoneyPage,
+  // ShopInboxPage,
+} from "./routes/ShopRoutes";
+
+
+import ShopHomePage from "./pages/Shop/ShopHomePage";
+
+
+
+import ProtectedRoute from "./routes/ProtectedRoute";
+import SellerProtectedRoute from "./routes/SellerProtectedRoute";
 
 //
-import { loadUser } from './redux/actions/user';
+import { loadUser,loadSeller } from './redux/actions/user';
 import Store from './redux/store';
 
 
 const App = () => {
-  useEffect(()=>{
-    Store.dispatch(loadUser())
-  },[])
+  // useEffect(()=>{
+  //   Store.dispatch(loadUser())
+  // },[])
+
+   useEffect(() => {
+      Store.dispatch(loadUser());
+      Store.dispatch(loadSeller());
+      // Store.dispatch(getAllProducts());
+      // Store.dispatch(getAllEvents());
+      // getStripeApikey();
+    }, []);
+  
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path='/sign-Up' element={<SignupPage/>}/>
+         <Route path="/shop-create" element={<ShopCreatePage />} />
+        <Route path="/shop-login" element={<ShopLoginPage />} />
         <Route path='/' element={<HomePage/>}/>
         <Route path='/products' element={<ProductsPage/>}/>
-        <Route path="/product/:name" element={<ProductDetailsPage />} />   
+        <Route path="/product/:name" element={<ProductDetailsPage />} />    
         <Route path='/best-selling' element={<BestSellingPage/>}/>
         <Route path='/events' element={<EventsPage/>}/>
         <Route path='/faq' element={<FAQPage/>}/>
-
-
-                    <Route
-                             path="/profile"
-                             element={
-                              //  <ProtectedRoute>
+        <Route   path="/profile"  element={
+                               <ProtectedRoute>
                                  <ProfilePage />
-                              //  </ProtectedRoute>
-                             }
-                           />
+                               </ProtectedRoute>    } />
+          <Route
+          path="/shop/:id"
+          element={
+            <SellerProtectedRoute>
+              <ShopHomePage />
+             </SellerProtectedRoute>
+          }
+        />
 
-
+          <Route
+          path="/dashboard"
+          element={
+            <SellerProtectedRoute>
+              <ShopDashboardPage />
+          </SellerProtectedRoute>
+          }
+        />
 
       
       </Routes>
