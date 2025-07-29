@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../server";
 import { toast } from "react-toastify";
@@ -15,6 +15,8 @@ const ShopCreate = () => {
   const [zipCode, setZipCode] = useState();
   const [avatar, setAvatar] = useState();
   const [password, setPassword] = useState("");
+  const [description, setDescription] = useState("");
+
   const [visible, setVisible] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -29,6 +31,7 @@ const ShopCreate = () => {
         zipCode,
         address,
         phoneNumber,
+        description,
       })
       .then((res) => {
         toast.success(res.data.message);
@@ -125,6 +128,7 @@ const ShopCreate = () => {
               </div>
             </div>
 
+
             <div>
               <label
                 htmlFor="email"
@@ -143,6 +147,26 @@ const ShopCreate = () => {
                 />
               </div>
             </div>
+
+            <div>
+  <label
+    htmlFor="description"
+    className="block text-sm font-medium text-gray-700"
+  >
+    Shop Description
+  </label>
+  <div className="mt-1">
+    <textarea
+      name="description"
+      rows="3"
+      required
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+    ></textarea>
+  </div>
+</div>
+
 
             <div>
               <label

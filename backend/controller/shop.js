@@ -33,6 +33,7 @@ router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
       zipCode: req.body.zipCode,
+       description: req.body.description,
     });
 
     // Save the new shop to the database

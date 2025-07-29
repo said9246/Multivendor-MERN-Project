@@ -85,7 +85,8 @@ const ProductDetailsCard = ({ setOpen, data }) => {
 
 
                 
-                <img src={data.image_Url?.[0]?.url} alt="" />
+                {/* <img src={data.image_Url?.[0]?.url} alt="" /> */}
+                <img  src={data.images[0].url} alt="working image"  />
 
 
 

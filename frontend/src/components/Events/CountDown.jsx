@@ -10,16 +10,32 @@ const CountDown = ({ data }) => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
+    // Check if time is up
     if (
-      typeof timeLeft.days === 'undefined' &&
-      typeof timeLeft.hours === 'undefined' &&
-      typeof timeLeft.minutes === 'undefined' &&
-      typeof timeLeft.seconds === 'undefined'
+      typeof timeLeft.days === "undefined" &&
+      typeof timeLeft.hours === "undefined" &&
+      typeof timeLeft.minutes === "undefined" &&
+      typeof timeLeft.seconds === "undefined"
     ) {
-      axios.delete(`${server}/event/delete-shop-event/${data._id}`);
+      const token = localStorage.getItem("sellerToken");
+
+      axios
+        .delete(`${server}/event/delete-shop-event/${data._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(() => {
+          console.log("Event deleted successfully");
+        })
+        .catch((err) => {
+          console.error("Error deleting event:", err.response?.data?.message || err.message);
+        });
     }
+
     return () => clearTimeout(timer);
-  });
+  },[timeLeft, calculateTimeLeft, data._id]
+);
 
   function calculateTimeLeft() {
     const difference = +new Date(data.Finish_Date) - +new Date();
@@ -38,12 +54,10 @@ const CountDown = ({ data }) => {
   }
 
   const timerComponents = Object.keys(timeLeft).map((interval) => {
-    if (!timeLeft[interval]) {
-      return null;
-    }
+    if (!timeLeft[interval]) return null;
 
     return (
-      <span className="text-[25px] text-[#475ad2]">
+      <span key={interval} className="text-[25px] text-[#475ad2]">
         {timeLeft[interval]} {interval}{" "}
       </span>
     );

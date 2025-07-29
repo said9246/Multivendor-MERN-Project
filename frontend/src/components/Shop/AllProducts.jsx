@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from '@mui/x-data-grid';
+import {  Button } from '@mui/material';
 import React, { useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const AllProducts = () => {
 
   useEffect(() => {
     dispatch(getAllProductsShop(seller._id));
-  }, [dispatch]);
+  }, [dispatch,seller._id]);
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
@@ -108,7 +108,7 @@ const AllProducts = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-full mx-8 pt-1 mt-10 bg-white">
+        <div className="w-full mx-8 pt-1 mt-10 bg-white ">
           <DataGrid
             rows={row}
             columns={columns}

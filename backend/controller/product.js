@@ -32,6 +32,7 @@ router.post(
           const result = await cloudinary.v2.uploader.upload(images[i], {
             folder: "products",
           });
+          
       
           imagesLinks.push({
             public_id: result.public_id,
@@ -51,8 +52,10 @@ router.post(
         });
       }
     } catch (error) {
-      return next(new ErrorHandler(error, 400));
-    }
+  
+  return next(new ErrorHandler(error.message, 400));
+}
+
   })
 );
 
@@ -85,13 +88,11 @@ router.delete(
         return next(new ErrorHandler("Product is not found with this id", 404));
       }    
 
-      for (let i = 0; 1 < product.images.length; i++) {
-        const result = await cloudinary.v2.uploader.destroy(
-          product.images[i].public_id
-        );
+      for (let i = 0; i < product.images.length; i++) {
+        await cloudinary.v2.uploader.destroy(product.images[i].public_id);
       }
-    
-      await product.remove();
+
+      await product.deleteOne(); // changed from .remove()
 
       res.status(201).json({
         success: true,
@@ -102,6 +103,7 @@ router.delete(
     }
   })
 );
+
 
 // get all products
 router.get(

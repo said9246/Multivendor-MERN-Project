@@ -39,7 +39,7 @@ const Singup = () => {
     e.preventDefault();
 
     axios
-      .post(`${server}/sign-up`, { name, email, password, avatar })
+      .post(`${server}/user/sign-up`, { name, email, password, avatar })
       .then((res) => {
         toast.success(res.data.message);
         setName("");

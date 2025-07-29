@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
   AiFillHeart,
-  AiFillStar,
+  // AiFillStar,
   AiOutlineEye,
   AiOutlineHeart,
   AiOutlineShoppingCart,
-  AiOutlineStar,
+  // AiOutlineStar,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
@@ -21,6 +21,7 @@ import Ratings from "../../Products/Ratings";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductCard = ({ data, isEvent }) => {
+  
   const { cart } = useSelector((state) => state.cart);
    const { wishlist } = useSelector((state) => state.wishlist);
   const [click, setClick] = useState(false);
@@ -36,7 +37,7 @@ const ProductCard = ({ data, isEvent }) => {
     } else {
       setClick(false);
     }
-  }, [wishlist]);
+  }, [wishlist, data._id]);
 
    const addToCartHandler = (id) => {
     const isItemExists = cart && cart.find((i) => i._id === id);
@@ -73,9 +74,10 @@ const ProductCard = ({ data, isEvent }) => {
 
  
 
-        {data.image_Url?.[0]?.url && (
+
+{data.images?.[0]?.url && (
   <img
-    src={data.image_Url[0].url}
+    src={data.images[0].url}
     alt="working image"
     className="w-full h-[170px] object-contain"
   />

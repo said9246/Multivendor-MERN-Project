@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,13 +25,23 @@ const ShopLogin = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        toast.success("Login Success!");
-        navigate("/dashboard");
-        window.location.reload(true); 
-      })
+  toast.success("Login Success!");
+  
+  // ✅ Save token to localStorage
+  localStorage.setItem("sellerToken", res.data.token);
+
+  navigate("/dashboard");
+  window.location.reload(true); 
+})
+
+
+
+    
       .catch((err) => {
         toast.error(err.response.data.message);
       });
+
+
   };
 
   return (

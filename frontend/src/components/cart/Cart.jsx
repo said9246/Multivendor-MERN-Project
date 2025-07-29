@@ -140,7 +140,8 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
        
 
         <img
-  src={data?.image_Url?.[0]?.url} // fallback image if missing
+  src={data?.images?.[0]?.url} // fallback image if missing
+  // src={`${data.images[0]?.url}`}
   alt="not found"
   className="w-[130px] h-min ml-2 mr-2 rounded-[5px]"
 />
@@ -156,7 +157,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
           </h4>
         </div>
         <RxCross1
-  size={35} // Set size here
+  size={15} // Set size here
   className="cursor-pointer" // Keep it simple
   onClick={() => removeFromCartHandler(data)}
 />

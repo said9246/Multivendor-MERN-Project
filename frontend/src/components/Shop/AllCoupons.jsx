@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from '@mui/x-data-grid';
+import {  Button } from '@mui/material';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -37,7 +37,7 @@ const AllCoupons = () => {
       .catch((error) => {
         setIsLoading(false);
       });
-  }, [dispatch]);
+  }, [dispatch,seller._id]);
 
   const handleDelete = async (id) => {
     axios.delete(`${server}/coupon/delete-coupon/${id}`,{withCredentials: true}).then((res) => {
@@ -140,7 +140,10 @@ const AllCoupons = () => {
           />
           {open && (
             <div className="fixed top-0 left-0 w-full h-screen bg-[#00000062] z-[20000] flex items-center justify-center">
-              <div className="w-[90%] 800px:w-[40%] h-[80vh] bg-white rounded-md shadow p-4">
+              
+
+                <div className="w-[90%] 800px:w-[40%] max-h-[90vh] overflow-y-auto bg-white rounded-md shadow p-4">
+
                 <div className="w-full flex justify-end">
                   <RxCross1
                     size={30}
@@ -152,7 +155,7 @@ const AllCoupons = () => {
                   Create Coupon code
                 </h5>
                 {/* create coupoun code */}
-                <form onSubmit={handleSubmit} aria-required={true}>
+                <form onSubmit={handleSubmit} >
                   <br />
                   <div>
                     <label className="pb-2">
@@ -232,7 +235,7 @@ const AllCoupons = () => {
                     <input
                       type="submit"
                       value="Create"
-                      className="mt-2 appearance-none block w-full px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      className="mt-2 appearance-none block w-full cursor-pointer px-3 h-[35px] border border-gray-300 rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     />
                   </div>
                 </form>

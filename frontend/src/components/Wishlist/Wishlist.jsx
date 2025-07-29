@@ -76,11 +76,13 @@ const CartSingle = ({ data,removeFromWishlistHandler,addToCartHandler }) => {
   return (
     <div className="border-b p-4">
       <div className="w-full 800px:flex items-center">
-        <RxCross1 size={55}  className="cursor-pointer 800px:mb-['unset'] 800px:ml-['unset'] mb-2 ml-2 text-[#d02222]"
+        <RxCross1 size={15}  className="cursor-pointer 800px:mb-['unset'] 800px:ml-['unset'] mb-2 ml-2 text-[#d02222]"
         onClick={() => removeFromWishlistHandler(data)}
         />
+       
+
         <img
-          src={data?.image_Url?.[0]?.url}
+          src={`${data.images[0]?.url}`}
           alt="not working "
           className="w-[130px] h-min ml-2 mr-2 rounded-[5px]"
         />

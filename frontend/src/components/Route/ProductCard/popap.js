@@ -19,7 +19,7 @@ const ProductDetailsCard = ({setOpen,dataa}) => {
               onClick={() => setOpen(false)}
             />
 
-           bnvnnh
+           
 
 
           </div>
