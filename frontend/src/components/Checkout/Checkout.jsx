@@ -67,6 +67,12 @@ const Checkout = () => {
     const name = couponCode;
 
     await axios.get(`${server}/coupon/get-coupon-value/${name}`).then((res) => {
+      
+      if (res.data === "Coupon code doesn't exists!") {
+        toast.error("Coupon code doesn't exists!");
+        setCouponCode("");
+        return;
+      }
       const shopId = res.data.couponCode?.shopId;
       const couponCodeValue = res.data.couponCode?.value;
       if (res.data.couponCode !== null) {
@@ -85,6 +91,8 @@ const Checkout = () => {
           setDiscountPrice(discountPrice);
           setCouponCodeData(res.data.couponCode);
           setCouponCode("");
+          toast.success("Coupon applied successfully!");
+
         }
       }
       if (res.data.couponCode === null) {
@@ -100,7 +108,7 @@ const Checkout = () => {
     ? (subTotalPrice + shipping - discountPercentenge).toFixed(2)
     : (subTotalPrice + shipping).toFixed(2);
 
-  console.log(discountPercentenge);
+  
 
   return (
     <div className="w-full flex flex-col items-center py-8">

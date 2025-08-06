@@ -213,7 +213,7 @@ const UserInbox = () => {
         <>
           <Header />
           <h1 className="text-center text-[30px] py-3 font-Poppins">
-            All Messages
+            All Messages inbox
           </h1>
           {/* All messages list */}
           {conversations &&
@@ -332,7 +332,7 @@ const SellerInbox = ({
   sendMessageHandler,
   messages,
   sellerId,
-  userData,
+  userData, 
   activeStatus,
   scrollRef,
   handleImageUpload,

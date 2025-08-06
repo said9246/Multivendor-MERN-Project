@@ -4,36 +4,35 @@ import styles from '../../styles/styles'
 import EventCard from "./EventCard";
 
 const Events = () => {
-  // const {isLoading} = useSelector((state) => state.events);  
+  const {allEvents,isLoading} = useSelector((state) => state.events);  
    
   return (
     <div>
-     {/* {
-      !isLoading && ( */}
+     {
+      !isLoading && (
         <div className={`${styles.section}`}>
       <div className={`${styles.heading}`}>
         <h1>Popular Events</h1>
       </div>
 
       <div className="w-full grid">
-         {/* {
+         {
           allEvents.length !== 0 && (
             <EventCard data={allEvents && allEvents[0]} />
           )
-         } */}
-         <EventCard/>
-         {/* <h4>{
+         }
+         <h4>{
            allEvents?.length === 0 && (
             'No Events have!'
            )
-          } */}
+          }
 
-         {/* </h4> */}
+         </h4>
       </div>
      
     </div>
-      {/* )
-     } */}
+      )
+     }
   </div>
   )
 }

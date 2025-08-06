@@ -209,7 +209,7 @@ const DashboardMessages = () => {
     <div className="w-[90%] bg-white m-5 h-[85vh] overflow-y-scroll rounded">
       {!open && (
         <>
-          <h1 className="text-center text-[30px] py-3 font-Poppins">
+          <h1 className="text-center text-[30px] py-3 font-Poppins text-cyan-400">
             All Messages
           </h1>
           {/* All messages list */}
@@ -442,3 +442,37 @@ const SellerInbox = ({
 };
 
 export default DashboardMessages;
+
+
+// ---------------------------------------------------------------------------------------------------------
+// import React from 'react'
+
+// const DashboardMessages = () => {
+//   return (
+
+
+//     <>
+
+//      <div className="w-[90%] bg-white m-5 h-[85vh] overflow-y-scroll rounded">
+      
+      
+//           <h1 className="text-center text-[30px] py-3 font-Poppins text-cyan-400">
+//             All Messages
+//           </h1>
+//           <div className='w-full flex p-2 px-3 my-3 bg-[#00000010'>
+//             <img src="https://res.cloudinary.com/dfw0aun3u/image/upload/v1753741162/avatars/ezz3wbg9cgtb67xnvytr.jpg" alt="" className='w-[50px] has-[50px] rounded-full' />
+//            <div>
+//              <h1>said khan</h1>
+//             <p>i am working on this project</p>
+//            </div>
+//           </div>
+
+//           </div>
+
+
+// </>
+
+//   )
+// }
+
+// export default DashboardMessages

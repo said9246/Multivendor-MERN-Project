@@ -44,7 +44,7 @@ const AllProducts = () => {
       minWidth: 80,
       flex: 0.5,
     },
-
+   
     {
       field: "sold",
       headerName: "Sold out",

@@ -1,8 +1,11 @@
 const express = require("express");
+require("dotenv").config({ path: "config/.env" });
 const router = express.Router();
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const Stripe = require("stripe");
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 
 router.post(
   "/process",
@@ -11,14 +14,14 @@ router.post(
       amount: req.body.amount,
       currency: "inr",
       metadata: {
-        company: "Becodemy",
+        company: "Said khan",
       },
     });
-    res.status(200).json({
-      success: true,
+    res.status(200).json({    
+      success: true,   
       client_secret: myPayment.client_secret,
-    });
-  })
+    });  
+  })   
 );
 
 router.get(
