@@ -1,8 +1,8 @@
-const app = require("./app");
+const app = require("./App");
 const connectDatabase = require("./db/Database");
 const cloudinary = require("cloudinary");
 
-// Handling uncaught Exception
+// Handling uncaught Exception ye us wqt hota hai jb koi error aati hai jb humne uske sath try catch nhi kiya hota hai
 process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
   console.log(`shutting down the server for handling uncaught exception`);
@@ -18,6 +18,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 // connect db   
 connectDatabase();
 
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -32,7 +33,7 @@ const server = app.listen(process.env.PORT, () => {
   );
 });
 
-// unhandled promise rejection
+// unhandled promise rejection ye us wqt hota hai jb koi pomise reject ho jati hai aur humne uske sath catch nhi kiya hota hai
 process.on("unhandledRejection", (err) => {
   console.log(`Shutting down the server for ${err.message}`);
   console.log(`shutting down the server for unhandle promise rejection`);
